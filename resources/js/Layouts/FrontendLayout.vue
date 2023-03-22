@@ -4,8 +4,8 @@ import FrontendNavigation from '@/Layouts/Partials/FrontendNavigation.vue'
 </script>
 
 <template>
-  <FrontendNavigation></FrontendNavigation>
-  <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-2 sm:pt-4 lg:pt-6">
+  <div class="isolate bg-white dark:bg-slate-900 text-black dark:text-gray-200">
+    <FrontendNavigation></FrontendNavigation>
     <slot />
   </div>
 </template>

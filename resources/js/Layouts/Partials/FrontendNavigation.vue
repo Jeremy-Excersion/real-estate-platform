@@ -23,7 +23,7 @@ const userNavigation = [
 </script>
 
 <template>
-  <Disclosure as="nav" class="bg-gray-800" v-slot="{ open }">
+  <Disclosure as="nav" class="sticky top-0 bg-white dark:bg-gray-800 z-50" v-slot="{ open }">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <div class="flex h-16 justify-between">
         <div class="flex">
@@ -41,7 +41,8 @@ const userNavigation = [
             </a>
           </div>
           <div class="hidden md:ml-6 md:flex md:items-center md:space-x-4">
-            <a v-for="item in navigation" :key="item.name" :href="item.href" :class="[item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white', 'rounded-md px-3 py-2 text-sm font-medium']" :aria-current="item.current ? 'page' : undefined">{{ item.name }}</a>
+            <a v-for="item in navigation" :key="item.name" :href="item.href" 
+            :class="[item.current ? 'bg-gray-300 dark:bg-gray-900 text-black dark:text-white' : 'text-gray-800 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-700', 'rounded-md px-3 py-2 text-sm font-medium']" :aria-current="item.current ? 'page' : undefined">{{ item.name }}</a>
           </div>
         </div>
         <div class="flex items-center">
@@ -84,11 +85,11 @@ const userNavigation = [
         </div>
       </div>
     </div>
-
     <DisclosurePanel class="md:hidden">
       <div class="space-y-1 px-2 pt-2 pb-3 sm:px-3">
-        <DisclosureButton v-for="item in navigation" :key="item.name" as="a" :href="item.href" :class="[item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white', 'block rounded-md px-3 py-2 text-base font-medium']" :aria-current="item.current ? 'page' : undefined">{{ item.name }}</DisclosureButton>
-        <DisclosureButton v-if="!$page.props.loggedIn" as="a" :href="route('login')" class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Log In</DisclosureButton>
+        <DisclosureButton v-for="item in navigation" :key="item.name" as="a" :href="item.href" 
+        :class="[item.current ? 'bg-gray-300 dark:bg-gray-900 text-black dark:text-white' : 'text-gray-800 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-700', 'block rounded-md px-3 py-2 text-base font-medium']" :aria-current="item.current ? 'page' : undefined">{{ item.name }}</DisclosureButton>
+        <DisclosureButton v-if="!$page.props.loggedIn" as="a" :href="route('login')" class="text-gray-800 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-700 hover:text-gray-700 dark:hover:text-white block rounded-md px-3 py-2 text-base font-medium">Log In</DisclosureButton>
       </div>
       <div v-if="$page.props.loggedIn" class="border-t border-gray-700 pt-4 pb-3">
         <div class="flex items-center px-5 sm:px-6">
@@ -105,7 +106,9 @@ const userNavigation = [
           </button>
         </div>
         <div class="mt-3 space-y-1 px-2 sm:px-3">
-          <DisclosureButton v-for="item in userNavigation" :key="item.name" as="a" :href="item.href" class="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white">{{ item.name }}</DisclosureButton>
+          <DisclosureButton v-for="item in userNavigation" :key="item.name" as="a" :href="item.href" 
+            class="block rounded-md px-3 py-2 text-base font-medium 
+            text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 hover:border-gray-300 dark:hover:border-gray-700">{{ item.name }}</DisclosureButton>
         </div>
       </div>
       
