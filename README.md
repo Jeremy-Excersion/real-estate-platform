@@ -5,7 +5,8 @@ Real Estate Platform is an open-source project built on Laravel for teams in the
 ## Current Status
 
 ### Frontend
-- [ ] Registration
+
+- [x] Registration
 - [ ] Homepage
 - [ ] Listing Detail Page
 - [ ] Profile/Account Settings
@@ -13,10 +14,21 @@ Real Estate Platform is an open-source project built on Laravel for teams in the
 - [ ] Blog
 
 ### Backend
+
 - [ ] Dashboard
 - [ ] Agent Management
 - [ ] Lead Management
 - [ ] Listing Management
+
+## Getting Started
+
+To begin getting started with this application, you must meet all the dependencies required by Laravel 10. For local development you can use sail.
+
+1.  `vendor/bin/sail up -d`
+2.  `vendor/bin/sail composer install`
+3.  `vendor/bin/sail npm install`
+4.  `vendor/bin/sail artisan migrate`
+5.  `vendor/bin/sail npm run dev`
 
 ## Learning Laravel
 
