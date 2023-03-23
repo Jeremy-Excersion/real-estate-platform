@@ -23,12 +23,12 @@ const props = defineProps({
               <h2 class="mt-10 text-3xl leading-8 text-white bg-clip-text">
                 Search for your dream home today!
               </h2>
-              <div class="mt-10 flex items-center justify-center gap-x-6 pointer-events-auto">
-                <a href="/download"
+              <div class="mt-10 flex flex-col md:flex-row gap-y-4 md:gap-x-6 items-center justify-center pointer-events-auto">
+                <a href="#"
                   class="bg-indigo-400 bg-opacity-40 border border-indigo-400 px-5 py-3 text-3xl leading-7 text-white drop-shadow hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-400 hover:scale-110 transition-all duration-300 cursor-pointer hover:text-indigo-100">
-                  Search Now
+                  Search Homes Now
                 </a>
-                <a href="#more"
+                <a href="#"
                   class="bg-indigo-400 bg-opacity-40 border border-indigo-400 px-5 py-3 text-3xl leading-7 text-white drop-shadow hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-400 hover:scale-110 transition-all duration-300 cursor-pointer hover:text-indigo-100">
                   What's My Home Worth?
                 </a>
