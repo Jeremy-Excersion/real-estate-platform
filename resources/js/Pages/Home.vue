@@ -4,13 +4,8 @@ import Listings from '@/Components/Listings.vue';
 import FrontendLayout from '@/Layouts/FrontendLayout.vue';
 import { Head, Link } from '@inertiajs/vue3';
 
-defineProps({
-  canLogin: {
-    type: Boolean,
-  },
-  canRegister: {
-    type: Boolean,
-  },
+const props = defineProps({
+  listings: Object
 });
 </script>
 
@@ -46,7 +41,7 @@ defineProps({
             <div class="text-center">
               <h2 class="text-3xl tracking-tight text-gray-800 dark:text-white sm:text-4xl">Newly Listed Homes</h2>
             </div>
-            <Listings />
+            <Listings :listings="props.listings"/>
           </div>
           <div class="pt-12">
             <Subscribe />
