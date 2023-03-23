@@ -71,6 +71,9 @@ const handleDebouncedScroll = debounce(handleScroll, 100);
 
 // when 200px from bottom of page, load next page with debounce
 function handleScroll(event) {
+  if (listings.value.per_page <= 3) {
+    return;
+  }
   let pixelsFromBottom = document.body.offsetHeight - (window.innerHeight + window.pageYOffset);
   if (pixelsFromBottom < 200) {
     axios.get(listings.value.next_page_url).then(response => {
