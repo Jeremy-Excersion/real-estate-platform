@@ -1,8 +1,10 @@
 <template>
-  <div class="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-y-20 gap-x-8 lg:mx-0 lg:max-w-none lg:grid-cols-3">
-    <article v-for="listing in listings.listings" :key="listing.id"
+  <div
+    class="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-y-20 gap-x-8 lg:mx-0 lg:max-w-none lg:grid-cols-3"
+  >
+    <article v-for="listing in listings.data" :key="listing.id"
       class="flex flex-col items-start justify-between px-4 sm:px-2 lg:px-0 hover:scale-105 transition-all duration-300 cursor-pointer"
-      @click="alert('coming soon...')">
+      @click="showListing(listing.id)">
       <div class="relative w-full">
         <img :src="listing.photos[0].photo_url" alt=""
           class="aspect-[16/9] w-full rounded-2xl bg-gray-100 object-cover sm:aspect-[2/1] lg:aspect-[3/2]" />
@@ -49,9 +51,42 @@
 </template>
 
 <script setup>
+import { ref, onMounted } from 'vue'
+import { debounce } from "lodash";
 
-function alert(message) {
-  window.alert(message)
+const props = defineProps({
+  listings: Object,
+});
+
+// make listings reactive
+const listings = ref(props.listings);
+
+// mounted watch window scroll events
+onMounted(() => {
+  window.addEventListener('scroll', handleDebouncedScroll);
+});
+
+// debounce scroll event
+const handleDebouncedScroll = debounce(handleScroll, 100);
+
+// when 200px from bottom of page, load next page with debounce
+function handleScroll(event) {
+  if (listings.value.per_page <= 3) {
+    return;
+  }
+  let pixelsFromBottom = document.body.offsetHeight - (window.innerHeight + window.pageYOffset);
+  if (pixelsFromBottom < 200) {
+    axios.get(listings.value.next_page_url).then(response => {
+      listings.value = {
+        ...response.data,
+        data: [...listings.value.data, ...response.data.data]
+      }
+    })
+  }
+}
+
+function showListing(id) {
+  window.location.href = '/listings/' + id;
 }
 
 // format datetime at readable date
@@ -60,71 +95,9 @@ function formatDate(date) {
   return new Date(date).toLocaleDateString(undefined, options);
 }
 
-const listings = defineProps({
-  listings: {
-    type: Object,
-    required: true,
-  },
-});
-
 // method to make numbers readable with commas
 function numberWithCommas(x) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
-// const listings = [
-//   {
-//     id: 1,
-//     address: '100 Main St, Boise, ID 83702',
-//     price: '$1,200,000',
-//     href: '#',
-//     description: 'Historic Boise home with modern updates. 3 bedrooms, 2 bathrooms, and a large backyard.',
-//     bedrooms: 3,
-//     bathrooms: 2,
-//     sqft: 2400,
-//     imageUrl:
-//       'https://images.unsplash.com/photo-1568605114967-8130f3a36994?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80',
-//     date: 'Mar 16, 2023',
-//     datetime: '2023-03-16',
-//     category: { name: 'Single Family', href: '#' },
-//     agent: {
-//       brokerage: 'Simple Real Estate',
-//     },
-//   },
-//   {
-//     id: 1,
-//     address: '372 E 100 N, Meridian, ID 83642',
-//     price: '$679,000',
-//     href: '#',
-//     description: 'Farmhouse style home with a spectular view. You don\'t want to miss this one!',
-//     bedrooms: 5,
-//     bathrooms: 3,
-//     sqft: 3_200,
-//     imageUrl: 'https://images.unsplash.com/photo-1570129477492-45c003edd2be?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80',
-//     date: 'Mar 14, 2023',
-//     datetime: '2023-03-14',
-//     category: { name: 'Single Family', href: '#' },
-//     agent: {
-//       brokerage: 'Elegant Real Estate',
-//     },
-//   },
-//   {
-//     id: 1,
-//     address: '300 Old River Rd, Nampa, ID 83687',
-//     price: '$469,000',
-//     href: '#',
-//     description: 'Beautiful Nampa home with an old world charm. You will love the large backyard and the spacious kitchen.',
-//     bedrooms: 3,
-//     bathrooms: 2,
-//     sqft: 1_800,
-//     imageUrl:
-//       'https://images.unsplash.com/photo-1480074568708-e7b720bb3f09?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2074&q=80',
-//     date: 'Mar 16, 2023',
-//     datetime: '2023-03-16',
-//     category: { name: 'Single Family', href: '#' },
-//     agent: {
-//       brokerage: 'Simple Real Estate',
-//     },
-//   },
-// ]
 </script>

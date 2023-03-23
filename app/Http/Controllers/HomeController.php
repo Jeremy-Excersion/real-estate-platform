@@ -10,7 +10,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $listings = Listing::with('photos')->limit(3)->get();
+        $listings = Listing::with('photos')->limit(3)->paginate(3);
 
         return Inertia::render('Home', [
             'listings' => $listings,
