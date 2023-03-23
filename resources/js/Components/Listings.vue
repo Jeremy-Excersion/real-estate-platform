@@ -1,7 +1,7 @@
 <template>
   <div class="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-y-20 gap-x-8 lg:mx-0 lg:max-w-none lg:grid-cols-3">
     <article v-for="listing in listings.listings" :key="listing.id"
-      class="flex flex-col items-start justify-between px-4 sm:px-2 lg:px-0 cursor-pointer"
+      class="flex flex-col items-start justify-between px-4 sm:px-2 lg:px-0 hover:scale-105 transition-all duration-300 cursor-pointer"
       @click="alert('coming soon...')">
       <div class="relative w-full">
         <img :src="listing.photos[0].photo_url" alt=""
