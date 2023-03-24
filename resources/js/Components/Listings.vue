@@ -1,7 +1,76 @@
 <template>
-  <div
-    class="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-y-20 gap-x-8 lg:mx-0 lg:max-w-none lg:grid-cols-3"
-  >
+  <form v-if="filters" class="mt-6 flex space-x-4 px-2 mx-auto w-full" action="#">
+    <div class="min-w-0 flex-1">
+      <label for="search" class="sr-only">Search</label>
+      <div class="relative rounded-md shadow-sm">
+        <div class="price-groups flex flex-wrap gap-4">
+          <div class="relative">
+            <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+              <CurrencyDollarIcon class="h-5 w-5 text-gray-200 text-md" aria-hidden="true" />
+            </div>
+            <input ref="params.min_price" autocomplete="off" type="number" v-model="params.min_price" name="min_price"
+              id="min_price"
+              class="flex w-50 rounded-md border-gray-700 bg-gray-600 text-gray-200 pl-10 hover:border-indigo-500 focus:ring-indigo-500 sm:text-md"
+              placeholder="Enter min price" />
+          </div>
+
+          <div class="relative">
+            <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+              <CurrencyDollarIcon class="h-5 w-5 text-gray-200 text-md" aria-hidden="true" />
+            </div>
+            <input ref="params.max_price" autocomplete="off" type="number" v-model="params.max_price" name="max_price"
+              id="max_price"
+              class="flex w-50 rounded-md border-gray-700 bg-gray-600 text-gray-200 pl-10 hover:border-indigo-500 focus:ring-indigo-500 sm:text-md"
+              placeholder="Enter max price" />
+          </div>
+
+          <div class="relative">
+            <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+              <span class="material-icons">square_foot</span>
+            </div>
+            <input ref="params.min_sqft" autocomplete="off" type="number" v-model="params.min_sqft" name="min_sqft"
+              id="min_sqft"
+              class="flex w-50 rounded-md border-gray-700 bg-gray-600 text-gray-200 pl-10 hover:border-indigo-500 focus:ring-indigo-500 sm:text-md"
+              placeholder="Enter min sqft" />
+          </div>
+
+          <div class="relative">
+            <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+              <span class="material-icons">square_foot</span>
+            </div>
+            <input ref="params.max_sqft" autocomplete="off" type="number" v-model="params.max_sqft" name="max_sqft"
+              id="max_sqft"
+              class="flex w-50 rounded-md border-gray-700 bg-gray-600 text-gray-200 pl-10 hover:border-indigo-500 focus:ring-indigo-500 sm:text-md"
+              placeholder="Enter max sqft" />
+          </div>
+
+          <div class="relative">
+            <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+              <span class="material-icons">bed</span>
+            </div>
+            <input ref="params.min_bedrooms" autocomplete="off" type="number" v-model="params.min_bedrooms" name="min_bedrooms"
+              id="min_bedrooms"
+              class="flex w-50 rounded-md border-gray-700 bg-gray-600 text-gray-200 pl-10 hover:border-indigo-500 focus:ring-indigo-500 sm:text-md"
+              placeholder="Beds" />
+          </div>
+
+          <div class="relative">
+            <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+              <span class="material-icons">shower</span>
+            </div>
+            <input ref="params.min_baths" autocomplete="off" type="number" v-model="params.min_baths" name="min_baths"
+              id="min_baths"
+              class="flex w-50 rounded-md border-gray-700 bg-gray-600 text-gray-200 pl-10 hover:border-indigo-500 focus:ring-indigo-500 sm:text-md"
+              placeholder="Baths" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+
+  <p v-if="listings.data.length === 0" class="text-center text-gray-500">No listings found.</p>
+  <p v-else class="text-center text-gray-500">Found {{ listings.total }} listings.</p>
+  <div class="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-y-20 gap-x-8 lg:mx-0 lg:max-w-none lg:grid-cols-3">
     <article v-for="listing in listings.data" :key="listing.id"
       class="flex flex-col items-start justify-between px-4 sm:px-2 lg:px-0 hover:scale-105 transition-all duration-300 cursor-pointer"
       @click="showListing(listing.id)">
@@ -42,7 +111,8 @@
         <div class="relative mt-4 flex items-center gap-x-4">
           <div class="text-sm leading-6">
             <p class="text-gray-600">Listed by {{ listing.listing_office_name }}<br>
-            Updated at: <time :datetime="listing.updated_at" class="text-gray-500">{{ formatDate(listing.updated_at) }}</time></p>
+              Updated at: <time :datetime="listing.updated_at" class="text-gray-500">{{ formatDate(listing.updated_at)
+              }}</time></p>
           </div>
         </div>
       </div>
@@ -51,15 +121,34 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+
+import { CurrencyDollarIcon, FunnelIcon, MagnifyingGlassIcon } from '@heroicons/vue/20/solid'
+import { reactive, ref, onMounted, watch } from 'vue'
 import { debounce } from "lodash";
 
 const props = defineProps({
   listings: Object,
+  filters: Object,
 });
 
 // make listings reactive
 const listings = ref(props.listings);
+
+const params = reactive({
+  min_price: props.filters ? props.filters.min_price : null,
+  max_price: props.filters ? props.filters.max_price : null,
+  min_beds: props.filters ? props.filters.min_beds : null,
+  min_baths: props.filters ? props.filters.min_baths : null,
+  min_sqft: props.filters ? props.filters.min_sqft : null,
+  max_sqft: props.filters ? props.filters.max_sqft : null,
+});
+
+// watch for max price filters changes
+watch(params, (newValue, oldValue) => {
+  axios.get('/listings', { params: params }).then(response => {
+    listings.value = response.data;
+  })
+});
 
 // mounted watch window scroll events
 onMounted(() => {
@@ -76,7 +165,10 @@ function handleScroll(event) {
   }
   let pixelsFromBottom = document.body.offsetHeight - (window.innerHeight + window.pageYOffset);
   if (pixelsFromBottom < 200) {
-    axios.get(listings.value.next_page_url).then(response => {
+    if (listings.value.next_page_url == null) {
+      return;
+    }
+    axios.get(listings.value.next_page_url, { params: params }).then(response => {
       listings.value = {
         ...response.data,
         data: [...listings.value.data, ...response.data.data]
