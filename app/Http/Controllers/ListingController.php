@@ -10,14 +10,45 @@ class ListingController extends Controller
 {
     public function index()
     {
-        $listings = Listing::with('photos')->paginate(9);
+
+        // request()->validate([
+        //     'min_price' => ['in:listing_price'],
+        //     'max_price' => ['in:listing_price'],
+        // ]);
+
+        $query = Listing::query()->with('photos');
+
+        if (request('min_price')) {
+            $query->where('listing_price', '>=', request('min_price'));
+        }
+
+        if (request('max_price')) {
+            $query->where('listing_price', '<=', request('max_price'));
+        }
+
+        if (request('min_bedrooms')) {
+            $query->where('bedrooms', '>=', request('min_bedrooms'));
+        }
+
+        if (request('min_bathrooms')) {
+            $query->where('bathrooms', '>=', request('min_bathrooms'));
+        }
+
+        if (request('min_sqft')) {
+            $query->where('square_footage', '>=', request('min_sqft'));
+        }
+
+        if (request('max_sqft')) {
+            $query->where('square_footage', '<=', request('max_sqft'));
+        }
 
         if (request()->wantsJson()) {
-            return $listings;
+            return $query->paginate(9);
         }
 
         return Inertia::render('Listings/Index', [
-            'listings' => $listings,
+            'listings' => $query->paginate(9),
+            'filters' => request()->all(['min_price', 'max_price']),
         ]);
     }
 
@@ -27,6 +58,7 @@ class ListingController extends Controller
 
         return Inertia::render('Listings/Show', [
             'listing' => $listing,
+            'filters' => request()->all(['min_price', 'max_price']),
         ]);
     }
 }
