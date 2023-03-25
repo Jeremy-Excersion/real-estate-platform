@@ -6,70 +6,72 @@
         <div class="price-groups flex flex-wrap gap-4">
           <div class="relative">
             <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-              <CurrencyDollarIcon class="h-5 w-5 text-gray-200 text-md" aria-hidden="true" />
+              <CurrencyDollarIcon class="h-5 w-5 text-gray-900 dark:text-gray-200 text-md" aria-hidden="true" />
             </div>
-            <input ref="params.min_price" autocomplete="off" type="number" v-model="params.min_price" name="min_price"
-              id="min_price"
-              class="flex w-50 rounded-md border-gray-700 bg-gray-600 text-gray-200 pl-10 hover:border-indigo-500 focus:ring-indigo-500 sm:text-md"
-              placeholder="Enter min price" />
+            <input ref="params.min_listing_price" autocomplete="off" type="number" v-model="params.min_listing_price"
+              name="min_listing_price" id="min_listing_price"
+              class="flex w-50 rounded-md border-gray-700 bg-gray-100 dark:bg-gray-600 text-gray-900 dark:text-gray-200 pl-10 hover:border-indigo-500 focus:ring-indigo-500 sm:text-md"
+              placeholder="Min price" />
           </div>
 
           <div class="relative">
             <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-              <CurrencyDollarIcon class="h-5 w-5 text-gray-200 text-md" aria-hidden="true" />
+              <CurrencyDollarIcon class="h-5 w-5 text-gray-900 dark:text-gray-200 text-md" aria-hidden="true" />
             </div>
-            <input ref="params.max_price" autocomplete="off" type="number" v-model="params.max_price" name="max_price"
-              id="max_price"
-              class="flex w-50 rounded-md border-gray-700 bg-gray-600 text-gray-200 pl-10 hover:border-indigo-500 focus:ring-indigo-500 sm:text-md"
-              placeholder="Enter max price" />
-          </div>
-
-          <div class="relative">
-            <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-              <span class="material-icons">square_foot</span>
-            </div>
-            <input ref="params.min_sqft" autocomplete="off" type="number" v-model="params.min_sqft" name="min_sqft"
-              id="min_sqft"
-              class="flex w-50 rounded-md border-gray-700 bg-gray-600 text-gray-200 pl-10 hover:border-indigo-500 focus:ring-indigo-500 sm:text-md"
-              placeholder="Enter min sqft" />
+            <input ref="params.max_listing_price" autocomplete="off" type="number" v-model="params.max_listing_price"
+              name="max_listing_price" id="max_listing_price"
+              class="flex w-50 rounded-md border-gray-700 bg-gray-100 dark:bg-gray-600 text-gray-900 dark:text-gray-200 pl-10 hover:border-indigo-500 focus:ring-indigo-500 sm:text-md"
+              placeholder="Max price" />
           </div>
 
           <div class="relative">
             <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
               <span class="material-icons">square_foot</span>
             </div>
-            <input ref="params.max_sqft" autocomplete="off" type="number" v-model="params.max_sqft" name="max_sqft"
-              id="max_sqft"
-              class="flex w-50 rounded-md border-gray-700 bg-gray-600 text-gray-200 pl-10 hover:border-indigo-500 focus:ring-indigo-500 sm:text-md"
-              placeholder="Enter max sqft" />
+            <input ref="params.min_square_footage" autocomplete="off" type="number" v-model="params.min_square_footage"
+              name="min_square_footage" id="min_square_footage"
+              class="flex w-50 rounded-md border-gray-700 bg-gray-100 dark:bg-gray-600 text-gray-900 dark:text-gray-200 pl-10 hover:border-indigo-500 focus:ring-indigo-500 sm:text-md"
+              placeholder="Min sqft" />
+          </div>
+
+          <div class="relative">
+            <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+              <span class="material-icons">square_foot</span>
+            </div>
+            <input ref="params.max_square_footage" autocomplete="off" type="number" v-model="params.max_square_footage"
+              name="max_square_footage" id="max_square_footage"
+              class="flex w-50 rounded-md border-gray-700 bg-gray-100 dark:bg-gray-600 text-gray-900 dark:text-gray-200 pl-10 hover:border-indigo-500 focus:ring-indigo-500 sm:text-md"
+              placeholder="Max sqft" />
           </div>
 
           <div class="relative">
             <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
               <span class="material-icons">bed</span>
             </div>
-            <input ref="params.min_bedrooms" autocomplete="off" type="number" v-model="params.min_bedrooms" name="min_bedrooms"
-              id="min_bedrooms"
-              class="flex w-50 rounded-md border-gray-700 bg-gray-600 text-gray-200 pl-10 hover:border-indigo-500 focus:ring-indigo-500 sm:text-md"
-              placeholder="Beds" />
+            <input ref="params.min_bedrooms" autocomplete="off" type="number" v-model="params.min_bedrooms"
+              name="min_bedrooms" id="min_bedrooms"
+              class="flex w-50 rounded-md border-gray-700 bg-gray-100 dark:bg-gray-600 text-gray-900 dark:text-gray-200 pl-10 hover:border-indigo-500 focus:ring-indigo-500 sm:text-md"
+              placeholder="Min beds" />
           </div>
 
           <div class="relative">
             <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
               <span class="material-icons">shower</span>
             </div>
-            <input ref="params.min_baths" autocomplete="off" type="number" v-model="params.min_baths" name="min_baths"
-              id="min_baths"
-              class="flex w-50 rounded-md border-gray-700 bg-gray-600 text-gray-200 pl-10 hover:border-indigo-500 focus:ring-indigo-500 sm:text-md"
-              placeholder="Baths" />
+            <input ref="params.min_bathrooms" autocomplete="off" type="number" v-model="params.min_bathrooms"
+              name="min_bathrooms" id="min_bathrooms"
+              class="flex w-50 rounded-md border-gray-700 bg-gray-100 dark:bg-gray-600 text-gray-900 dark:text-gray-200 pl-10 hover:border-indigo-500 focus:ring-indigo-500 sm:text-md"
+              placeholder="Min baths" />
           </div>
         </div>
       </div>
     </div>
   </form>
-
-  <p v-if="listings.data.length === 0" class="text-center text-gray-500">No listings found.</p>
-  <p v-else class="text-center text-gray-500">Found {{ listings.total }} listings.</p>
+  <div class="mt-4 space-x-4 px-2 mx-auto w-full inline-flex justify-between align-middle">
+    <AdvancedSearch :filters="filters" :params="params" :listings="listings" />
+    <p v-if="listings.data.length === 0" class="text-center text-gray-500">No listings found.</p>
+    <p v-else class="text-center text-gray-500">Found {{ listings.total }} listings.</p>
+  </div>
   <div class="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-y-20 gap-x-8 lg:mx-0 lg:max-w-none lg:grid-cols-3">
     <article v-for="listing in listings.data" :key="listing.id"
       class="flex flex-col items-start justify-between px-4 sm:px-2 lg:px-0 hover:scale-105 transition-all duration-300 cursor-pointer"
@@ -122,9 +124,10 @@
 
 <script setup>
 
-import { CurrencyDollarIcon, FunnelIcon, MagnifyingGlassIcon } from '@heroicons/vue/20/solid'
+import { CurrencyDollarIcon } from '@heroicons/vue/20/solid'
 import { reactive, ref, onMounted, watch } from 'vue'
 import { debounce } from "lodash";
+import AdvancedSearch from './AdvancedSearch.vue';
 
 const props = defineProps({
   listings: Object,
@@ -135,12 +138,12 @@ const props = defineProps({
 const listings = ref(props.listings);
 
 const params = reactive({
-  min_price: props.filters ? props.filters.min_price : null,
-  max_price: props.filters ? props.filters.max_price : null,
-  min_beds: props.filters ? props.filters.min_beds : null,
-  min_baths: props.filters ? props.filters.min_baths : null,
-  min_sqft: props.filters ? props.filters.min_sqft : null,
-  max_sqft: props.filters ? props.filters.max_sqft : null,
+  min_listing_price: props.filters ? props.filters.min_listing_price : null,
+  max_listing_price: props.filters ? props.filters.max_listing_price : null,
+  min_bedrooms: props.filters ? props.filters.min_bedrooms : null,
+  min_bathrooms: props.filters ? props.filters.min_bathrooms : null,
+  min_square_footage: props.filters ? props.filters.min_square_footage : null,
+  max_square_footage: props.filters ? props.filters.max_square_footage : null,
 });
 
 // watch for max price filters changes

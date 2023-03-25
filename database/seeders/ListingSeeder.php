@@ -15,11 +15,6 @@ class ListingSeeder extends Seeder
      */
     public function run(): void
     {
-        // set constraints to 0
-        DB::statement('SET FOREIGN_KEY_CHECKS=0');
-        Listing::truncate();
-        ListingPhoto::truncate();
-        DB::statement('SET FOREIGN_KEY_CHECKS=1');
         Listing::factory()->hasPhotos(1)->count(100)->create();
     }
 }

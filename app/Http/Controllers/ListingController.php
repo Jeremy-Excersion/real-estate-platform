@@ -10,36 +10,26 @@ class ListingController extends Controller
 {
     public function index()
     {
-
-        // request()->validate([
-        //     'min_price' => ['in:listing_price'],
-        //     'max_price' => ['in:listing_price'],
-        // ]);
-
         $query = Listing::query()->with('photos');
 
-        if (request('min_price')) {
-            $query->where('listing_price', '>=', request('min_price'));
-        }
+        $filters = request()->all(
+            ['min_listing_price', 'max_listing_price', 'min_bedrooms', 'min_bathrooms',
+            'min_square_footage', 'max_square_footage', 'min_lot_size', 'max_lot_size', 'min_year_built', 'max_year_built',
+            'has_garage', 'has_pool', 'has_basement', 'is_waterfront', 'has_ac', 'has_city_view', 'has_park_view', 'has_mountain_view', 'has_water_view']);
 
-        if (request('max_price')) {
-            $query->where('listing_price', '<=', request('max_price'));
-        }
-
-        if (request('min_bedrooms')) {
-            $query->where('bedrooms', '>=', request('min_bedrooms'));
-        }
-
-        if (request('min_bathrooms')) {
-            $query->where('bathrooms', '>=', request('min_bathrooms'));
-        }
-
-        if (request('min_sqft')) {
-            $query->where('square_footage', '>=', request('min_sqft'));
-        }
-
-        if (request('max_sqft')) {
-            $query->where('square_footage', '<=', request('max_sqft'));
+        foreach ($filters as $filter => $value) {
+            if (empty($value) || $filter == 'page') {
+                continue;
+            }
+            if (strpos($filter, 'min_') !== false) {
+                $column = str_replace('min_', '', $filter);
+                $query->where($column, '>=', $value);
+            } else if (strpos($filter, 'max_') !== false) {
+                $column = str_replace('max_', '', $filter);
+                $query->where($column, '<=', $value);
+            } else {
+                $query->where($filter, $value);
+            }
         }
 
         if (request()->wantsJson()) {
