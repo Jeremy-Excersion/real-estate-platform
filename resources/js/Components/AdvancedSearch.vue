@@ -11,111 +11,111 @@
           Custom search
         </h2>
 
-        <form v-if="filters" class="mt-6 flex space-x-4 mx-auto w-full" action="#">
+        <form v-if="filters" class="mt-6 flex space-x-4 mx-auto w-full text" action="#">
           <div class="min-w-0 flex-1">
             <label for="search" class="sr-only">Search</label>
             <div class="relative rounded-md shadow-sm">
               <div class="price-groups flex flex-wrap gap-4">
                 <div class="relative">
                   <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-                    <CurrencyDollarIcon class="h-5 w-5 text-gray-200 text-md" aria-hidden="true" />
+                    <CurrencyDollarIcon class="h-5 w-5 text-gray-700 dark:text-gray-200 text-md" aria-hidden="true" />
                   </div>
                   <input ref="params.min_listing_price" autocomplete="off" type="number"
                     v-model="params.min_listing_price" name="min_listing_price" id="min_listing_price"
-                    class="flex w-50 rounded-md border-gray-700 bg-gray-600 text-gray-200 pl-10 hover:border-indigo-500 focus:ring-indigo-500 sm:text-md"
-                    placeholder="Enter min price" />
+                    class="flex w-50 rounded-md border-gray-700 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 pl-10 hover:border-indigo-500 focus:ring-indigo-500 sm:text-md"
+                    placeholder="Min price" />
                 </div>
 
                 <div class="relative">
                   <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-                    <CurrencyDollarIcon class="h-5 w-5 text-gray-200 text-md" aria-hidden="true" />
+                    <CurrencyDollarIcon class="h-5 w-5 text-gray-700 dark:text-gray-200 text-md" aria-hidden="true" />
                   </div>
                   <input ref="params.max_listing_price" autocomplete="off" type="number"
                     v-model="params.max_listing_price" name="max_listing_price" id="max_listing_price"
-                    class="flex w-50 rounded-md border-gray-700 bg-gray-600 text-gray-200 pl-10 hover:border-indigo-500 focus:ring-indigo-500 sm:text-md"
-                    placeholder="Enter max price" />
+                    class="flex w-50 rounded-md border-gray-700 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 pl-10 hover:border-indigo-500 focus:ring-indigo-500 sm:text-md"
+                    placeholder="Max price" />
                 </div>
 
                 <div class="relative">
                   <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-                    <span class="material-icons">square_foot</span>
+                    <span class="material-icons text-gray-700 dark:text-gray-200">square_foot</span>
                   </div>
                   <input ref="params.min_square_footage" autocomplete="off" type="number"
                     v-model="params.min_square_footage" name="min_square_footage" id="min_square_footage"
-                    class="flex w-50 rounded-md border-gray-700 bg-gray-600 text-gray-200 pl-10 hover:border-indigo-500 focus:ring-indigo-500 sm:text-md"
-                    placeholder="Enter min sqft" />
+                    class="flex w-50 rounded-md border-gray-700 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 pl-10 hover:border-indigo-500 focus:ring-indigo-500 sm:text-md"
+                    placeholder="Min sqft" />
                 </div>
 
                 <div class="relative">
                   <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-                    <span class="material-icons">square_foot</span>
+                    <span class="material-icons text-gray-700 dark:text-gray-200">square_foot</span>
                   </div>
                   <input ref="params.max_square_footage" autocomplete="off" type="number"
                     v-model="params.max_square_footage" name="max_square_footage" id="max_square_footage"
-                    class="flex w-50 rounded-md border-gray-700 bg-gray-600 text-gray-200 pl-10 hover:border-indigo-500 focus:ring-indigo-500 sm:text-md"
-                    placeholder="Enter max sqft" />
+                    class="flex w-50 rounded-md border-gray-700 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 pl-10 hover:border-indigo-500 focus:ring-indigo-500 sm:text-md"
+                    placeholder="Max sqft" />
                 </div>
 
                 <div class="relative">
                   <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-                    <span class="material-icons">bed</span>
+                    <span class="material-icons text-gray-700 dark:text-gray-200">bed</span>
                   </div>
                   <input ref="params.min_bedrooms" autocomplete="off" type="number" v-model="params.min_bedrooms"
                     name="min_bedrooms" id="min_bedrooms"
-                    class="flex w-50 rounded-md border-gray-700 bg-gray-600 text-gray-200 pl-10 hover:border-indigo-500 focus:ring-indigo-500 sm:text-md"
+                    class="flex w-50 rounded-md border-gray-700 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 pl-10 hover:border-indigo-500 focus:ring-indigo-500 sm:text-md"
                     placeholder="Min beds" />
                 </div>
 
                 <!-- max beds -->
                 <div class="relative">
                   <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-                    <span class="material-icons">bed</span>
+                    <span class="material-icons text-gray-700 dark:text-gray-200">bed</span>
                   </div>
                   <input ref="params.max_bedrooms" autocomplete="off" type="number" v-model="params.max_bedrooms"
                     name="max_bedrooms" id="max_bedrooms"
-                    class="flex w-50 rounded-md border-gray-700 bg-gray-600 text-gray-200 pl-10 hover:border-indigo-500 focus:ring-indigo-500 sm:text-md"
+                    class="flex w-50 rounded-md border-gray-700 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 pl-10 hover:border-indigo-500 focus:ring-indigo-500 sm:text-md"
                     placeholder="Max beds" />
                 </div>
 
                 <div class="relative">
                   <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-                    <span class="material-icons">shower</span>
+                    <span class="material-icons text-gray-700 dark:text-gray-200">shower</span>
                   </div>
                   <input ref="params.min_bathrooms" autocomplete="off" type="number" v-model="params.min_bathrooms"
                     name="min_bathrooms" id="min_bathrooms"
-                    class="flex w-50 rounded-md border-gray-700 bg-gray-600 text-gray-200 pl-10 hover:border-indigo-500 focus:ring-indigo-500 sm:text-md"
+                    class="flex w-50 rounded-md border-gray-700 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 pl-10 hover:border-indigo-500 focus:ring-indigo-500 sm:text-md"
                     placeholder="Min baths" />
                 </div>
 
                 <!-- max baths -->
                 <div class="relative">
                   <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-                    <span class="material-icons">shower</span>
+                    <span class="material-icons text-gray-700 dark:text-gray-200">shower</span>
                   </div>
                   <input ref="params.max_bathrooms" autocomplete="off" type="number" v-model="params.max_bathrooms"
                     name="max_bathrooms" id="max_bathrooms"
-                    class="flex w-50 rounded-md border-gray-700 bg-gray-600 text-gray-200 pl-10 hover:border-indigo-500 focus:ring-indigo-500 sm:text-md"
+                    class="flex w-50 rounded-md border-gray-700 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 pl-10 hover:border-indigo-500 focus:ring-indigo-500 sm:text-md"
                     placeholder="Max baths" />
                 </div>
 
                 <!-- min year built -->
                 <div class="relative">
                   <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-                    <span class="material-icons">date_range</span>
+                    <span class="material-icons text-gray-700 dark:text-gray-200">date_range</span>
                   </div>
                   <input ref="params.min_year_built" autocomplete="off" type="number" v-model="params.min_year_built"
                     name="min_year_built" id="min_year_built"
-                    class="flex w-50 rounded-md border-gray-700 bg-gray-600 text-gray-200 pl-10 hover:border-indigo-500 focus:ring-indigo-500 sm:text-md"
+                    class="flex w-50 rounded-md border-gray-700 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 pl-10 hover:border-indigo-500 focus:ring-indigo-500 sm:text-md"
                     placeholder="Min year built" />
                 </div>
                 <!-- max year built -->
                 <div class="relative">
                   <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-                    <span class="material-icons">date_range</span>
+                    <span class="material-icons text-gray-700 dark:text-gray-200">date_range</span>
                   </div>
                   <input ref="params.max_year_built" autocomplete="off" type="number" v-model="params.max_year_built"
                     name="max_year_built" id="max_year_built"
-                    class="flex w-50 rounded-md border-gray-700 bg-gray-600 text-gray-200 pl-10 hover:border-indigo-500 focus:ring-indigo-500 sm:text-md"
+                    class="flex w-50 rounded-md border-gray-700 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 pl-10 hover:border-indigo-500 focus:ring-indigo-500 sm:text-md"
                     placeholder="Max year built" />
                 </div>
               </div>
