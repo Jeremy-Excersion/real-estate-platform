@@ -67,7 +67,7 @@
       </div>
     </div>
   </form>
-  <div class="mt-4 space-x-4 px-2 mx-auto w-full inline-flex justify-between align-middle">
+  <div v-if="listings.per_page > 3" class="mt-4 space-x-4 px-2 mx-auto w-full inline-flex justify-between align-middle">
     <AdvancedSearch :filters="filters" :params="params" :listings="listings" />
     <p v-if="listings.data.length === 0" class="text-center text-gray-500">No listings found.</p>
     <p v-else class="text-center text-gray-500">Found {{ listings.total }} listings.</p>
