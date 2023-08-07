@@ -25,6 +25,7 @@
         "@headlessui/vue": "^1.7.12",
         "@heroicons/vue": "^2.0.16",
         "@tailwindcss/typography": "^0.5.9",
-        "lodash": "^4.17.21"
+        "lodash": "^4.17.21",
+        "swiper": "^10.1.0"
     }
 }
